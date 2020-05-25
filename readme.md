@@ -170,7 +170,8 @@ When you mess up the commit message
 - modify a commit that is not recent one.
 - example - you want to change something 3 commits before
     1. git rebase -i HEAD~3  
-    You shoud provide the parent of the oldest commit, which is 4 commits ago (HEAD, HEAD~1, HEAD~2, **HEAD~3**).   
+    You shoud provide the parent of the oldest commit, which is 4 commits ago   
+        > HEAD - HEAD~1 - HEAD~2 - **HEAD~3** 
     2. You will see something like below in editor
         ``` 
         pick aaaaaaa 1st commit
