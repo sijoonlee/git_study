@@ -21,10 +21,24 @@ Working Directory ------ Staging Area ------- .git directory(repository)
 ### git rm
 - removing files from staging area + working directory
 - stages the removal of files
+- --cached to keep the file in working directory
+- -f to force removal after making changes since the last commit
 
+### git mv
+Two below are equivalent
+```
+git mv README.md README
+```
 
+```
+mv README.md README
+git rm README.md
+git add README
+```
 
+### git log
 
+see what has happened
 
 
 
