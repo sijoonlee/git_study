@@ -54,8 +54,21 @@ Index (Staging Area)
 - show the changes between the last commit and the unstaged
 - if all staged, nothing will show up
 
-### git diff --staged
+### git diff --staged (--cached)
 - show the staged that will go into the next commit
+
+### git diff > filename
+- print out to file
+
+### more of git diff
+- https://git-scm.com/docs/git-diff
+    ```
+    git diff [<options>] [<commit>] [--] [<path>…​]
+    git diff [<options>] --cached [<commit>] [--] [<path>…​]
+    git diff [<options>] <commit> <commit> [--] [<path>…​]
+    git diff [<options>] <blob> <blob>
+    git diff [<options>] --no-index [--] <path> <path>
+    ```
 
 ### git commit
 - commit the changes
@@ -68,15 +81,15 @@ Index (Staging Area)
 
 ### git mv
 Two below are equivalent
-```
+    ```
     git mv README.md README
-```
+    ```
 
-```
+    ```
     mv README.md README
     git rm README.md
     git add README
-```
+    ```
 
 ### git log
 - shows what has happened
@@ -175,6 +188,29 @@ Add ASCII graph
   git log --left-right master...branchA 
 
 
+### git blame
+- https://git-scm.com/docs/git-blame
+- Show what revision and author last modified each line of a file
+    ```
+    git blame [-c] [-b] [-l] [--root] [-t] [-f] [-n] [-s] [-e] [-p] [-w] [--incremental]
+	    [-L <range>] [-S <revs-file>] [-M] [-C] [-C] [-C] [--since=<date>]
+	    [--ignore-rev <rev>] [--ignore-revs-file <file>]
+	    [--progress] [--abbrev=<n>] [<rev> | --contents <file> | --reverse <rev>..<rev>]
+	    [--] <file>
+    ```
+### git blame -L10,+10 -- readme.md
+    ```
+    dab79155 (Sijoon Lee 2020-05-25 13:08:38 -0700 10) |Working Directory|Sandbox|
+    ^35a6e19 (Sijoon Lee 2020-05-25 11:01:00 -0700 11) 
+    dab79155 (Sijoon Lee 2020-05-25 13:08:38 -0700 12) ### HEAD
+    dab79155 (Sijoon Lee 2020-05-25 13:08:38 -0700 13) - git cat-file -p HEAD
+    bac3aa95 (Sijoon Lee 2020-05-25 16:22:04 -0700 14)     ```
+    dab79155 (Sijoon Lee 2020-05-25 13:08:38 -0700 15)     tree d06ef42d88d6fba20261cf77354c12a478cab13f
+    dab79155 (Sijoon Lee 2020-05-25 13:08:38 -0700 16)     parent 35a6e19fdd43648417176d9faf5084447192810b
+    dab79155 (Sijoon Lee 2020-05-25 13:08:38 -0700 17)     author Sijoon Lee <shijoonlee@gmail.com> 1590430199 -0700
+    dab79155 (Sijoon Lee 2020-05-25 13:08:38 -0700 18)     committer Sijoon Lee <shijoonlee@gmail.com> 1590430199 -0700
+    bac3aa95 (Sijoon Lee 2020-05-25 16:22:04 -0700 19)     ```
+    ```
 
 # Rewriting History
 
@@ -353,20 +389,29 @@ Commands
 4. git stash --all (-a)
     - include ignored files
   
-5. git stash list
-6. git stash apply
+6. git stash show
+    - show changes
+
+7. git stash list
+    - list stashes
+
+8. git stash apply
     - to recover the latest stash
     - to recover the sepcific stash  
         git stash apply stash@{n}
-7. git stash drop stash@{n}
+
+9. git stash drop stash@{n}
     - remove stash
-8. git stash pop stash@{n}
+
+10. git stash pop stash@{n}
     - apply & remove stash
-9. git stash branch <new_branch_name>
+
+11. git stash branch <new_branch_name>
     - create new branch
     - apply stash there
     - drop stash
-10. git clean
+
+12. git clean
     - remove files that are not tracked
     - it's safe to use **git stash --all**
     - check using **git clean -d -n** before **git clean -d -f**

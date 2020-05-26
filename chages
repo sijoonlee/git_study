@@ -1,0 +1,55 @@
+diff --git a/readme.md b/readme.md
+index 072cfb2..155ab3d 100644
+--- a/readme.md
++++ b/readme.md
+@@ -110,12 +110,26 @@ ex) --pretty=oneline
+     |%cr|Committer date, relative|
+     |%s|Subject|
+     
++- --pretty=format:"%h %s" --graph
++Add ASCII graph
++    ```
++    $ git log --pretty=format:"%h %s" --graph
++    * 2d3acf9 ignore errors from SIGCHLD on trap
++    * 5e3ee11 Merge branch 'master' of git://github.com/dustin/grit
++    |\
++    | * 420eac9 Added a method for getting the current branch.
++    * | 30e367c timeout code and tests
++    * | 5a09431 add timeout protection to grit
++    * | e1193f8 support for heads with slashes in them
++    |/
++    * d6016bc require time for xmlschema
++    * 11d191e Merge branch 'defunkt' into local
++    ```
+ - add alias to git config
+     ```
+     git config --global -e
+     
+-    and add below lines
+-    
++    and add below alias lines (author: Brandon Legault @Ratehub.ca)
+     [alias]
+ 	logpretty = log --date=short --pretty=format:'\
+ 	%C(bold blue)%h%Creset\
+@@ -134,21 +148,6 @@ ex) --pretty=oneline
+ 	%C(bold blue)|%Creset%C(yellow)%an%Creset\
+ 	' --color --graph
+     ```
+-- --pretty=format:"%h %s" --graph
+-Add ASCII graph
+-    ```
+-    $ git log --pretty=format:"%h %s" --graph
+-    * 2d3acf9 ignore errors from SIGCHLD on trap
+-    * 5e3ee11 Merge branch 'master' of git://github.com/dustin/grit
+-    |\
+-    | * 420eac9 Added a method for getting the current branch.
+-    * | 30e367c timeout code and tests
+-    * | 5a09431 add timeout protection to grit
+-    * | e1193f8 support for heads with slashes in them
+-    |/
+-    * d6016bc require time for xmlschema
+-    * 11d191e Merge branch 'defunkt' into local
+-    ```
+ - --since / --after / --until / --before  
+     --since=2.weeks    
+     --since="2010-1-1"  
