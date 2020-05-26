@@ -107,7 +107,31 @@ ex) --pretty=oneline
     |%cd|Committer date|
     |%cr|Committer date, relative|
     |%s|Subject|
+    
+- add alias to git config
+    ```
+    git config --global -e
+    
+    and add below lines
+    
+    [alias]
+	logpretty = log --date=short --pretty=format:'\
+	%C(bold blue)%h%Creset\
+	%C(auto)%d %Creset\
+	%C(normal)%s %Creset\
+	%C(bold blue)(%Creset%C(yellow)%an%Creset%C(bold blue))%Creset\
+	' --color --graph
 
+    OR
+    
+    [alias]
+	logpretty = log --date=short --pretty=format:'\
+	%C(bold blue)%h%Creset\
+	%C(auto)%d %Creset\
+	%C(normal)%s %Creset\
+	%C(bold blue)|%Creset%C(yellow)%an%Creset\
+	' --color --graph
+    ```
 - --pretty=format:"%h %s" --graph
 Add ASCII graph
     ```
