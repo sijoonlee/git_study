@@ -80,16 +80,16 @@ Index (Staging Area)
 - -f to force removal after making changes since the last commit
 
 ### git mv
-Two below are equivalent
-    ```
+Two below are equivalent  
+```
+    1)
     git mv README.md README
-    ```
-
-    ```
+    
+    2)
     mv README.md README
-    git rm README.md
-    git add README
-    ```
+    git rm README.md  
+    git add README  
+```
 
 ### git log
 - shows what has happened
@@ -183,7 +183,7 @@ Add ASCII graph
   equivalent to above: git log branchA --not master  
   more than two args, git log a b --not c
 
--- triple dot(...)
+- triple dot(...)  
   find commits reachable from either of two, but not by both  
   git log --left-right master...branchA 
 
@@ -350,7 +350,7 @@ Step 3 : Updating the Working directory (--hard)
 
 ### git checkout
 1. file level
-- works like reset --hard
+- works like reset --hard  
 **be careful, the changes will disappear**
 ```
    git checkout 7e018071 readme.md
@@ -372,46 +372,46 @@ do so (now or later) by using -b with the checkout command again. Example:
 
 HEAD is now at 7e01807 5th
 ```
-### Stashing and Cleaning
-Commands
-1. git stash   
+# Stashing and Cleaning
+
+### git stash   
     - save current working directory and index state  
     - clean up working direcotry/index like right after the last commit
   
-2. git stash --keep-index
+### git stash --keep-index
     - save working directory and index
     - leave it in Index
   
-3. git stash --include-untracked (-u)
+### git stash --include-untracked (-u)
     - include untracked files
     - by default, git stash doesn't include the untracked
   
-4. git stash --all (-a)
+### git stash --all (-a)
     - include ignored files
   
-6. git stash show
+### git stash show
     - show changes
 
-7. git stash list
+### git stash list
     - list stashes
 
-8. git stash apply
+### git stash apply
     - to recover the latest stash
     - to recover the sepcific stash  
         git stash apply stash@{n}
 
-9. git stash drop stash@{n}
+### git stash drop stash@{n}
     - remove stash
 
-10. git stash pop stash@{n}
+### git stash pop stash@{n}
     - apply & remove stash
 
-11. git stash branch <new_branch_name>
+### git stash branch <new_branch_name>
     - create new branch
     - apply stash there
     - drop stash
 
-12. git clean
+### git clean
     - remove files that are not tracked
     - it's safe to use **git stash --all**
     - check using **git clean -d -n** before **git clean -d -f**
@@ -554,7 +554,7 @@ choose what you want to have in the merge like below
 
 
 
-### MISC
+# MISC
 set vscode as editor  
 https://stackoverflow.com/questions/30024353/how-to-use-visual-studio-code-as-default-editor-for-git
 
