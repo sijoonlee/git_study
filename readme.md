@@ -40,7 +40,9 @@ Index (Staging Area)
 <------------------------------git commit  
 .git directory(repository)  
   
-  
+
+# Git commands
+
 ### git add
 - tracking new file
 - staging modified file
@@ -123,7 +125,7 @@ ex) --pretty=oneline
 	' --color --graph
 
     OR
-    
+
     [alias]
 	logpretty = log --date=short --pretty=format:'\
 	%C(bold blue)%h%Creset\
