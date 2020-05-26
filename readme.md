@@ -292,11 +292,25 @@ Step 3 : Updating the Working directory (--hard)
 - works like reset --hard
 **be careful, the changes will disappear**
 ```
-   git checkout -- some_file_you_want_to_revert_back
+   git checkout 7e018071 readme.md
 ```
 2. commit level  
-change HEAD itself (to 'branch')  
+change HEAD itself
+```
+git checkout 7e018071
+Note: checking out '7e018071'.
 
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b <new-branch-name>
+
+HEAD is now at 7e01807 5th
+```
 ### Stashing and Cleaning
 Commands
 1. git stash   
@@ -336,6 +350,137 @@ Commands
     - -n or --dry-run
     - -x // delete ignored files as well
     - -i // interactive
+
+# Basic Branchiing and Merging
+
+### git branch [branch_name]
+- create branch
+### git branch -v
+- show all last commits of branchs
+### git branch --merged (or --no-merged)
+- show merged branches (or those not merged)
+### git checkout [branch_name]
+- switch to an existing branch
+### git checkout -b [branch_name]
+- create a new branch and switch to it
+### git log --oneline --decorate
+- decorate: to show where the branch pointers are pointing 
+### git log --oneline --decorate --graph --all
+- graph: to show ASCII graph
+### git merge [branch_name]
+1) you can run tests to ensure the branch works well
+2) merge it into master
+3) delete the branch
+```
+    git checkout master
+    git merge hotfix
+    git branch -d hotfix
+```
+### Three way merge
+```
+                ----- Commit ----- Master
+Common Ancestor 
+                ----- Commit ----- Branch
+
+```
+1) Git will make three snapshot: The common ancestor, master, branch
+2) then will create a new commit that points to two parents  
+*The commit is called 'merge commit'*
+```
+                ----- Commit ----- Master -----
+Common Ancestor                                 "Merge Commit"
+                ----- Commit ----- Branch -----
+
+```
+### git rebase
+1) instead of three way merge, rebase will put the branch commit on the top of Master comit  
+    ```
+    git checkout testing
+    git rebase master
+    First, rewinding head to replay your work on top of it...
+    Applying: added staged command
+
+    result looks like
+    Common Ancestor ----- Commit ----- Master ----- Commit ----- Branch
+    ```
+2) Then go back to master, and merge (fast-forward)
+    ```
+    git checkout master
+    git merge testing
+
+    result looks like    
+    Common Ancestor ----- Commit ----- Commit ----- Master                
+    ```
+
+
+### Merge Conflict
+1. git merge [branch_name]
+    ```
+    git merge testing
+    Auto-merging 6.md
+    CONFLICT (content): Merge conflict in 6.md
+    Automatic merge failed; fix conflicts and then commit the result.
+    ```
+2. Git will mark the conflict in the file 6.md
+- open the file and edit manually
+
+    ```
+    <<<<<<< HEAD
+    ssd
+
+
+    asd
+
+
+    =======
+    slsdkfjlaskdfjsladfj
+    >>>>>>> testing
+    sdfasdfdflkxcvjlk
+    ```
+3. edit the file  
+anything below "<<<<<< HEAD" and above "=======" are from HEAD  
+anything below "=======" and above ">>>>>> testing" are from testing branch  
+You should delete <<<<<<< HEAD, ========, >>>>>> testing  
+choose what you want to have in the merge like below    
+    ```
+    ssd
+
+
+    asd
+
+
+    slsdkfjlaskdfjsladfj
+    sdfasdfdflkxcvjlk
+    ```
+4. git add & git commit
+- git add: to mark each file as resolved
+- git commit: to conclude merge
+    ```
+    git add 6.md
+    git status
+    On branch master
+    All conflicts fixed but you are still merging.
+    (use "git commit" to conclude merge)
+
+    Changes to be committed:
+
+        modified:   6.md
+
+    git commit
+    [master 6d46637] Merge branch 'testing'
+    ```
+
+### git mergetool
+- you can use graphic tool
+    ```
+    git mergetool
+
+    This message is displayed because 'merge.tool' is not configured.
+    See 'git mergetool --tool-help' or 'git help config' for more details.
+    'git mergetool' will now attempt to use one of the following tools:
+    opendiff kdiff3 tkdiff xxdiff meld tortoisemerge gvimdiff diffuse diffmerge ecmerge p4merge araxis bc codecompare emerge vimdiff
+    No files need merging
+    ```
 
 
 
