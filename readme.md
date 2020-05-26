@@ -479,7 +479,7 @@ Common Ancestor                                 "Merge Commit"
     git merge testing
 
     result looks like    
-    Common Ancestor ----- Commit ----- Commit ----- Master                
+    Common Ancestor ----- Commit ----- Commit ----- Commit ----- Master                
     ```
 
 
